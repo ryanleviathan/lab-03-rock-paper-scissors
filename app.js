@@ -18,20 +18,53 @@ let resetTotal = 0;
 
 // define DOM utitlies
 
-const getZeroOneOrTwo = () => Math.round(Math.random() * 2);
+let rockPaperScissors = ['rock', 'paper', 'scissors'];
+let rpc = rockPaperScissors[Math.floor(Math.random() * rockPaperScissors.length)];
 
-const getNpcChoice = (zeroOneOrTwo) => {
-    if (zeroOneOrTwo === 0) return 'rock';
-    if (zeroOneOrTwo === 1) return 'paper';
-    if (zeroOneOrTwo === 2) return 'scissors';
+const userWon = () => {
+    const selectedRadioButton = document.querySelector('input:checked');
+    const userSelection = selectedRadioButton.value;
+
+    if (rpc === 'rock') {
+        if (userSelection === 'paper')
+            winTotal++;
+    }
+    if (rpc === 'paper') {
+        if (userSelection === 'scissors')
+            winTotal++;
+    }
+    if (rpc === 'scissors') {
+        if (userSelection === 'rock')
+            winTotal++;
+    }
 };
 
-const userWon = 
+const userLost = () => {
+    const selectedRadioButton = document.querySelector('input:checked');
+    const userSelection = selectedRadioButton.value;
 
-const userLost =
+    if (rpc === 'rock') {
+        if (userSelection === 'scissors')
+            lossTotal++;
+    }
+    if (rpc === 'paper') {
+        if (userSelection === 'rock')
+            lossTotal++;
+    }
+    if (rpc === 'scissors') {
+        if (userSelection === 'paper')
+            lossTotal++;
+    }
+};
 
-const userTied =
+const userTied = () => {
+    const selectedRadioButton = document.querySelector('input:checked');
+    const userSelection = selectedRadioButton.value;
 
+    if (rpc === userSelection) {
+        tieTotal++;
+    }
+};
 
 
 
