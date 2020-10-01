@@ -3,11 +3,11 @@
 const play = document.getElementById('play');
 const reset = document.getElementById('reset');
 
-const pcSpan = document.getElementById('pc');
+const npcSpan = document.getElementById('npc');
 const winSpan = document.getElementById('wins');
 const lossSpan = document.getElementById('losses');
 const tieSpan = document.getElementById('ties');
-const resetSpan = document.getElementById('reset');
+const resetSpan = document.getElementById('resets');
 
 // set initial state
 
@@ -15,11 +15,6 @@ let win = 0;
 let lose = 0;
 let tie = 0;
 let resetIt = 0;
-
-//Object.assign(winSpan, win);
-//Object.assign(lossSpan, lose);
-//Object.assign(tieSpan, tie);
-//Object.assign(resetSpan, resetIt);
 
 console.log(win, lose, tie, resetIt);
 
@@ -61,15 +56,23 @@ const willYouWin = () => {
     if (userSelection === 'scissors' && npcSelection === 'scissors') {
         tie++;
     }
+
+    // loop back to ui
+
+    winSpan.textContent = win;
+    lossSpan.textContent = lose;
+    tieSpan.textContent = tie;
+
     console.log(win, lose, tie);
 };
 
 play.addEventListener('click', willYouWin) ;
 
 const hardReset = () => {
-    win = 0;
-    lose = 0;
-    tie = 0;
+    winSpan.textContent = win;
+    lossSpan.textContent = lose;
+    tieSpan.textContent = tie;
+    resetSpan.textContent = resetIt;
     resetIt++;
 };
 
