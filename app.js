@@ -16,6 +16,11 @@ let lose = 0;
 let tie = 0;
 let resetIt = 0;
 
+//Object.assign(winSpan, win);
+//Object.assign(lossSpan, lose);
+//Object.assign(tieSpan, tie);
+//Object.assign(resetSpan, resetIt);
+
 console.log(win, lose, tie, resetIt);
 
 // define DOM utitlies
