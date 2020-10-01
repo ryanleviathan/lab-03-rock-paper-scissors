@@ -6,102 +6,64 @@ const reset = document.getElementById('reset');
 const winsSpan = document.getElementById('wins');
 const lossesSpan = document.getElementById('losses');
 const tiesSpan = document.getElementById('ties');
-const resultSpan = document.getElementById('results');
 const resetSpan = document.getElementById('reset');
-
-// set initial state
 
 let winTotal = 0;
 let lossTotal = 0;
 let tieTotal = 0;
 let resetTotal = 0;
 
+// set initial state
+
 // define DOM utitlies
 
-let rockPaperScissors = ['rock', 'paper', 'scissors'];
-let rpc = rockPaperScissors[Math.floor(Math.random() * rockPaperScissors.length)];
-
-const userWon = () => {
+const willYouWin = () => {
+    let rockPaperScissors = ['rock', 'paper', 'scissors'];
+    let rpc = rockPaperScissors[Math.floor(Math.random() * rockPaperScissors.length)];
+    const npcSelection = rpc;
+    console.log(rpc);
     const selectedRadioButton = document.querySelector('input:checked');
     const userSelection = selectedRadioButton.value;
 
-    if (rpc === 'rock') {
-        if (userSelection === 'paper')
-            winTotal++;
+    if (userSelection === 'rock' && npcSelection === 'scissors') {
+        winTotal++;
     }
-    if (rpc === 'paper') {
-        if (userSelection === 'scissors')
-            winTotal++;
+    if (userSelection === 'paper' && npcSelection === 'rock') {
+        winTotal++;
     }
-    if (rpc === 'scissors') {
-        if (userSelection === 'rock')
-            winTotal++;
+    if (userSelection === 'scissors' && npcSelection === 'paper') {
+        winTotal++;
     }
-};
-
-const userLost = () => {
-    const selectedRadioButton = document.querySelector('input:checked');
-    const userSelection = selectedRadioButton.value;
-
-    if (rpc === 'rock') {
-        if (userSelection === 'scissors')
-            lossTotal++;
+    if (userSelection === 'rock' && npcSelection === 'paper') {
+        lossTotal++;
     }
-    if (rpc === 'paper') {
-        if (userSelection === 'rock')
-            lossTotal++;
+    if (userSelection === 'paper' && npcSelection === 'scissors') {
+        lossTotal++;
     }
-    if (rpc === 'scissors') {
-        if (userSelection === 'paper')
-            lossTotal++;
+    if (userSelection === 'scissors' && npcSelection === 'rock') {
+        lossTotal++;
     }
-};
-
-const userTied = () => {
-    const selectedRadioButton = document.querySelector('input:checked');
-    const userSelection = selectedRadioButton.value;
-
-    if (rpc === userSelection) {
+    if (userSelection === 'rock' && npcSelection === 'rock') {
+        tieTotal++;
+    }
+    if (userSelection === 'paper' && npcSelection === 'paper') {
+        tieTotal++;
+    }
+    if (userSelection === 'scissors' && npcSelection === 'scissors') {
         tieTotal++;
     }
 };
 
+play.addEventListener('click', willYouWin) ;
 
-
-
-
-
-
-
-//const playAgainstNpc = () => {
-    //values
-    //const selectedRadioButton = document.querySelector('input:checked');
-    //const userInput = selectedRadioButton.nodeValue;
-    //changes to state and DOM
-    //const zeroOneOrTwo = (getZeroOneOrTwo);
-    //const randomNpcChoice = (getNpcChoice);
-    //const won = userWon(userInput, randomNpcChoice);
-    //const lost = userLost(userInput, ran)
-    //cosnt tied =
-
-    //if (won) {
-    //    winTotal++;
-    //}
-
-    //if ()
-//}
-
-play.addEventListener('click', () => {
-
-});
-
-
-reset.addEventListener('click', () => {
+const hardReset = () => {
     winTotal = 0;
     lossTotal = 0;
     tieTotal = 0;
     resetTotal++;
-});
+};
+
+reset.addEventListener('click', hardReset);
 
 // set event listeners to update state and DOM
 
