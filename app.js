@@ -3,17 +3,20 @@
 const play = document.getElementById('play');
 const reset = document.getElementById('reset');
 
-const winsSpan = document.getElementById('wins');
-const lossesSpan = document.getElementById('losses');
-const tiesSpan = document.getElementById('ties');
+const pcSpan = document.getElementById('pc');
+const winSpan = document.getElementById('wins');
+const lossSpan = document.getElementById('losses');
+const tieSpan = document.getElementById('ties');
 const resetSpan = document.getElementById('reset');
 
-let winTotal = 0;
-let lossTotal = 0;
-let tieTotal = 0;
-let resetTotal = 0;
-
 // set initial state
+
+let win = 0;
+let lose = 0;
+let tie = 0;
+let resetIt = 0;
+
+console.log(win, lose, tie, resetIt);
 
 // define DOM utitlies
 
@@ -24,43 +27,45 @@ const willYouWin = () => {
     console.log(rpc);
     const selectedRadioButton = document.querySelector('input:checked');
     const userSelection = selectedRadioButton.value;
+    console.log(userSelection);
 
     if (userSelection === 'rock' && npcSelection === 'scissors') {
-        winTotal++;
+        win++;
     }
     if (userSelection === 'paper' && npcSelection === 'rock') {
-        winTotal++;
+        win++;
     }
     if (userSelection === 'scissors' && npcSelection === 'paper') {
-        winTotal++;
+        win++;
     }
     if (userSelection === 'rock' && npcSelection === 'paper') {
-        lossTotal++;
+        lose++;
     }
     if (userSelection === 'paper' && npcSelection === 'scissors') {
-        lossTotal++;
+        lose++;
     }
     if (userSelection === 'scissors' && npcSelection === 'rock') {
-        lossTotal++;
+        lose++;
     }
     if (userSelection === 'rock' && npcSelection === 'rock') {
-        tieTotal++;
+        tie++;
     }
     if (userSelection === 'paper' && npcSelection === 'paper') {
-        tieTotal++;
+        tie++;
     }
     if (userSelection === 'scissors' && npcSelection === 'scissors') {
-        tieTotal++;
+        tie++;
     }
+    console.log(win, lose, tie);
 };
 
 play.addEventListener('click', willYouWin) ;
 
 const hardReset = () => {
-    winTotal = 0;
-    lossTotal = 0;
-    tieTotal = 0;
-    resetTotal++;
+    win = 0;
+    lose = 0;
+    tie = 0;
+    resetIt++;
 };
 
 reset.addEventListener('click', hardReset);
