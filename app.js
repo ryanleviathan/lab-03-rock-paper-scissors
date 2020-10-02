@@ -39,6 +39,19 @@ play.addEventListener('click', () => {
 });
 
 const hardReset = () => {
+    winSpan.textContent = win;
+    lossSpan.textContent = lose;
+    tieSpan.textContent = tie;
+
+    if (win > 0){
+        win = 0;
+    }
+    if (lose > 0){
+        lose = 0;
+    }
+    if (tie > 0){
+        tie = 0;
+    }
     resetSpan.textContent = resetIt;
     resetIt++;
 };
