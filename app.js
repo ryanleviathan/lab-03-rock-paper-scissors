@@ -1,9 +1,11 @@
 // import functions and grab DOM elements
 
+import { willYouWin } from './utils.js';
+
 const play = document.getElementById('play');
 const reset = document.getElementById('reset');
 
-const npcSpan = document.getElementById('npc');
+//const npcSpan = document.getElementById('npc');
 const winSpan = document.getElementById('wins');
 const lossSpan = document.getElementById('losses');
 const tieSpan = document.getElementById('ties');
@@ -20,63 +22,40 @@ console.log(win, lose, tie, resetIt);
 
 // define DOM utitlies
 
-const willYouWin = () => {
-    let rockPaperScissors = ['rock', 'paper', 'scissors'];
-    let rpc = rockPaperScissors[Math.floor(Math.random() * rockPaperScissors.length)];
-    const npcSelection = rpc;
-    console.log(rpc);
+play.addEventListener('click', () => {
+
     const selectedRadioButton = document.querySelector('input:checked');
     const userSelection = selectedRadioButton.value;
-    console.log(userSelection);
-
-    if (userSelection === 'rock' && npcSelection === 'scissors') {
-        win++;
-    }
-    if (userSelection === 'paper' && npcSelection === 'rock') {
-        win++;
-    }
-    if (userSelection === 'scissors' && npcSelection === 'paper') {
-        win++;
-    }
-    if (userSelection === 'rock' && npcSelection === 'paper') {
-        lose++;
-    }
-    if (userSelection === 'paper' && npcSelection === 'scissors') {
-        lose++;
-    }
-    if (userSelection === 'scissors' && npcSelection === 'rock') {
-        lose++;
-    }
-    if (userSelection === 'rock' && npcSelection === 'rock') {
-        tie++;
-    }
-    if (userSelection === 'paper' && npcSelection === 'paper') {
-        tie++;
-    }
-    if (userSelection === 'scissors' && npcSelection === 'scissors') {
-        tie++;
-    }
-
-    // loop back to ui
+    const results = willYouWin(userSelection);
+   
+    if (results === 'win') win++;
+    if (results === 'lose') lose++;
+    if (results === 'tie') tie++;
 
     winSpan.textContent = win;
     lossSpan.textContent = lose;
     tieSpan.textContent = tie;
 
-    console.log(win, lose, tie);
-};
-
-play.addEventListener('click', willYouWin) ;
+});
 
 const hardReset = () => {
     winSpan.textContent = win;
     lossSpan.textContent = lose;
     tieSpan.textContent = tie;
+
+    if (win > 0){
+        win = 0;
+    }
+    if (lose > 0){
+        lose = 0;
+    }
+    if (tie > 0){
+        tie = 0;
+    }
     resetSpan.textContent = resetIt;
     resetIt++;
 };
 
 reset.addEventListener('click', hardReset);
 
-// set event listeners to update state and DOM
 
